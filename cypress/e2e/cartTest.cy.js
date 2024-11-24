@@ -1,7 +1,7 @@
 import ProductPage from "../pages/ProductPage";
 import CartPage from "../pages/CartPage";
 
-describe("Filters", () => {
+describe("Cart", () => {
   it("Добавить товар в корзину", () => {
     ProductPage.visit();
 

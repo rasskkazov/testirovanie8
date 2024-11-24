@@ -7,6 +7,7 @@ describe("Filters", () => {
 
   it("Применить фильтры до 25", () => {
     FilterPage.applyPriceFilter();
+    cy.wait(1500);
 
     FilterPage.checkPrices();
   });

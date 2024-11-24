@@ -9,8 +9,10 @@ describe("Auth", () => {
     AuthPage.visit();
 
     AuthPage.fillAuthForm({ email, password });
+    cy.wait(1500);
 
     AuthPage.submit();
+    cy.wait(1500);
 
     AuthPage.checkAuth({ email });
   });
@@ -19,8 +21,10 @@ describe("Auth", () => {
     AuthPage.visit();
 
     AuthPage.fillAuthForm({ email, password: "blah" });
+    cy.wait(1500);
 
     AuthPage.submit();
+    cy.wait(1500);
 
     AuthPage.checkErrorMessage({ email });
   });

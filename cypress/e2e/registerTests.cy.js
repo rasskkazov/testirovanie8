@@ -1,6 +1,6 @@
 import RegistrationPage from "../pages/RegistrationPage";
 
-describe("Registration Tests", () => {
+describe("Registration", () => {
   const email = `test${Date.now()}@example.com`;
 
   it("Успешная регистрация", () => {
@@ -12,7 +12,11 @@ describe("Registration Tests", () => {
       email,
       password: "Password123",
     });
+    cy.wait(1500);
+
     RegistrationPage.submit();
+    cy.wait(1500);
+
     RegistrationPage.checkSuccessMessage();
   });
 
@@ -25,7 +29,11 @@ describe("Registration Tests", () => {
       email: "janedoe@example.com",
       password: "Password123",
     });
+    cy.wait(1500);
+
     cy.get("#ConfirmPassword").type("Password321");
+    cy.wait(1500);
+
     RegistrationPage.submit();
     RegistrationPage.checkErrorMessage();
   });
