@@ -1,31 +1,32 @@
 import RegistrationPage from "../pages/RegistrationPage";
 
 describe("Registration Tests", () => {
-  beforeEach(() => {
-    RegistrationPage.visit(); // Открытие страницы регистрации перед каждым тестом
-  });
+  const email = `test${Date.now()}@example.com`;
 
-  it("Should register successfully with valid data", () => {
-    const email = `test${Date.now()}@example.com`; // Генерация уникального email
+  it("Успешная регистрация", () => {
+    RegistrationPage.visit();
+
     RegistrationPage.fillRegistrationForm({
       firstName: "John",
       lastName: "Doe",
-      email: email,
+      email,
       password: "Password123",
     });
     RegistrationPage.submit();
-    RegistrationPage.checkSuccessMessage(); // Проверяем успешное сообщение
+    RegistrationPage.checkSuccessMessage();
   });
 
-  it("Should show error for mismatched passwords", () => {
+  it("Регистрация с некорректным повтором пароля", () => {
+    RegistrationPage.visit();
+
     RegistrationPage.fillRegistrationForm({
       firstName: "Jane",
       lastName: "Doe",
       email: "janedoe@example.com",
       password: "Password123",
     });
-    cy.get("#ConfirmPassword").type("Password321"); // Некорректный повтор пароля
+    cy.get("#ConfirmPassword").type("Password321");
     RegistrationPage.submit();
-    RegistrationPage.checkErrorMessage(); // Проверка, что появилась ошибка
+    RegistrationPage.checkErrorMessage();
   });
 });
